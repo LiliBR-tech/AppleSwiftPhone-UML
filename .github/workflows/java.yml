@@ -33,3 +33,9 @@ jobs:
 
       - name: 🛠️ Criar estrutura de saída
         run: mkdir -p out
+
+      - name: 🛠️ Compilar os arquivos Java
+        run: javac -d out $(find src/main/java src/test/java -name "*.java")
+     
+      - name: 🚀 Rodar testes
+        run: java -cp out br.com.iphone.test.IphoneTest
