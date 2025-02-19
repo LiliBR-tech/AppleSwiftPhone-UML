@@ -1,0 +1,35 @@
+name: Java CI - iPhone
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout do repositório
+        uses: actions/checkout@v3
+
+      - name: 📂 Depuração Mostrar estrutura do repositório
+        run: ls -R  # Lista todos os arquivos e diretórios
+
+      - name: 🔍 Identificar onde estão os arquivos Java
+        run: |
+          echo "Verificando estrutura..."
+          find . -type d   # Lista os diretórios para depuração
+          find . -name "*.java" || echo "Nenhum arquivo Java encontrado!"
+
+      - name: ☕ Configurar JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: 🛠️ Criar estrutura de saída
+        run: mkdir -p out
